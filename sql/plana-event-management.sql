@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 03:08 PM
+-- Generation Time: May 17, 2023 at 03:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -298,7 +298,8 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (10, 10, '_edit_lock', '1684328476:1'),
 (11, 12, '_edit_lock', '1684328503:1'),
 (12, 14, '_edit_lock', '1684328541:1'),
-(13, 16, '_edit_lock', '1684328603:1');
+(13, 16, '_edit_lock', '1684328603:1'),
+(14, 18, '_edit_lock', '1684329353:1');
 
 -- --------------------------------------------------------
 
@@ -353,7 +354,9 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (14, 1, '2023-05-17 13:04:40', '2023-05-17 13:04:40', '', 'Event', '', 'publish', 'closed', 'closed', '', 'event', '', '', '2023-05-17 13:04:40', '2023-05-17 13:04:40', '', 0, 'http://localhost/plana-event-management/?page_id=14', 0, 'page', '', 0),
 (15, 1, '2023-05-17 13:04:40', '2023-05-17 13:04:40', '', 'Event', '', 'inherit', 'closed', 'closed', '', '14-revision-v1', '', '', '2023-05-17 13:04:40', '2023-05-17 13:04:40', '', 14, 'http://localhost/plana-event-management/?p=15', 0, 'revision', '', 0),
 (16, 1, '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 'ManageEvents', '', 'publish', 'closed', 'closed', '', 'manageevents', '', '', '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 0, 'http://localhost/plana-event-management/?page_id=16', 0, 'page', '', 0),
-(17, 1, '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 'ManageEvents', '', 'inherit', 'closed', 'closed', '', '16-revision-v1', '', '', '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 16, 'http://localhost/plana-event-management/?p=17', 0, 'revision', '', 0);
+(17, 1, '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 'ManageEvents', '', 'inherit', 'closed', 'closed', '', '16-revision-v1', '', '', '2023-05-17 13:05:31', '2023-05-17 13:05:31', '', 16, 'http://localhost/plana-event-management/?p=17', 0, 'revision', '', 0),
+(18, 1, '2023-05-17 13:18:14', '2023-05-17 13:18:14', '', 'My Tickets', '', 'publish', 'closed', 'closed', '', 'mytickets', '', '', '2023-05-17 13:18:14', '2023-05-17 13:18:14', '', 0, 'http://localhost/plana-event-management/?page_id=18', 0, 'page', '', 0),
+(19, 1, '2023-05-17 13:18:14', '2023-05-17 13:18:14', '', 'My Tickets', '', 'inherit', 'closed', 'closed', '', '18-revision-v1', '', '', '2023-05-17 13:18:14', '2023-05-17 13:18:14', '', 18, 'http://localhost/plana-event-management/?p=19', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -631,13 +634,13 @@ ALTER TABLE `wp_options`
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
