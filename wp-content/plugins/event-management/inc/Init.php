@@ -7,6 +7,7 @@
 namespace Inc;
 
 use Inc\Pages\ManageEvent;
+use Inc\Pages\ManageTicket;
 use Inc\Pages\UserRoles;
 
 class Init
@@ -15,6 +16,7 @@ class Init
     {
         return [
             ManageEvent::class,
+            ManageTicket::class,
             UserRoles::class
         ];
     }
