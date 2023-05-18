@@ -14,10 +14,10 @@ get_header();
             <div class="form">
                     <h2>Register</h2>
                     <div class="input1">
-                        <label for="">Full Name</label>
+                        <label for="fullname">Full Name</label>
                         <div class="icons1">
                             <ion-icon name="person-outline"></ion-icon>
-                            <input type="text" placeholder="Enter full name" name="fullname">
+                            <input type="text" placeholder="Enter full name" name="fullname" id="fullname">
                         </div>
                     </div>
                     <div class="input1">
