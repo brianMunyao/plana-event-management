@@ -11,7 +11,11 @@
     <?php wp_head(); ?>
 </head>
 
+
+
 <body>
-    <nav>
-        <h4><?php echo bloginfo('name'); ?></h4>
-    </nav>
+    <div class="app-body">
+        <nav>
+            <h4><?php echo bloginfo('name'); ?></h4>
+        </nav>
+        <div class="inner-body">

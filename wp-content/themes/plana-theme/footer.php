@@ -1,7 +1,10 @@
-    <footer>
-        <?php echo bloginfo('name'); ?> &copy; 2023. All Rights Reserved
-    </footer>
+</div>
 
-    </body>
+<footer>
+    <?php echo bloginfo('name'); ?> &copy; 2023. All Rights Reserved
+</footer>
 
-    </html>
+</div>
+</body>
+
+</html>
