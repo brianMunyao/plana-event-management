@@ -23,7 +23,8 @@ class ManageTicket
             t_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             t_event_id INT NOT NULL,
             t_attendee_id INT NOT NULL,
-            t_quantity INT NOT NULL DEFAULT 1
+            t_quantity INT NOT NULL DEFAULT 1,
+            t_cost INT NOT NULL
         );");
     }
 
@@ -37,23 +38,23 @@ class ManageTicket
             $events_table = $wpdb->prefix . 'events';
             $tickets_table = $wpdb->prefix . 'tickets';
 
-            $available_tickets = $wpdb->get_var("SELECT e_tickets_remaining FROM $events_table WHERE e_id={$_POST['e_id']}");
+            $event_info = $wpdb->get_row("SELECT e_tickets_remaining, e_price FROM $events_table WHERE e_id={$_POST['e_id']}");
 
-            if ($available_tickets > 0) {
+            if ($event_info->e_tickets_remaining > 0) {
                 // to reduce the number of available tickets
                 $results = $wpdb->update(
                     $events_table,
-                    ['e_tickets_remaining' => $available_tickets - 1],
+                    ['e_tickets_remaining' => $event_info->e_tickets_remaining - $_POST['t_quantity']],
                     ['e_id' => $_POST['e_id']]
                 );
 
                 if ($results) {
-                    //TODO: add support to buy more than one ticket
                     // add ticket
                     $is_inserted = $wpdb->insert($tickets_table, [
                         't_event_id' => $_POST['e_id'],
                         't_attendee_id' => $_POST['attendee_id'],
-                        't_quantity' => $_POST['t_quantity'] ?? 1
+                        't_quantity' => $_POST['t_quantity'],
+                        't_cost' => ((int)$_POST['t_quantity'] *  (int)$event_info->e_price)
                     ]);
 
                     if ($is_inserted) {

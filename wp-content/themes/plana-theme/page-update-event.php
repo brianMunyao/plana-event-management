@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['id'])) wp_redirect(home_url());
+if (!isset($_GET['id']) || empty($_GET['id'])) wp_redirect(home_url());
 ?>
 
 <?php
@@ -22,7 +22,7 @@ echo $error_msg;
 
 
 $event = $wpdb->get_row("SELECT * FROM $events_table WHERE e_id={$_GET['id']}");
-// $curr_user_id = get_current_user_id();
+
 
 ?>
 
@@ -60,6 +60,10 @@ $event = $wpdb->get_row("SELECT * FROM $events_table WHERE e_id={$_GET['id']}");
         <div class="input-con">
             <label for="e_price">Event Price</label>
             <input type="number" min="0" name="e_price" id="e_price" value="<?php echo $event->e_price; ?>">
+        </div>
+        <div class="input-con">
+            <label for="e_image_url">Event Image URL</label>
+            <input type="url" name="e_image_url" id="e_image_url">
         </div>
 
         <button type="submit" name='update_event'>UPDATE</button>

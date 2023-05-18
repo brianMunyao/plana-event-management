@@ -55,6 +55,10 @@ $curr_user_id = get_current_user_id();
             <label for="e_price">Event Price</label>
             <input type="number" min="0" name="e_price" id="e_price">
         </div>
+        <div class="input-con">
+            <label for="e_image_url">Event Image URL </label>
+            <input type="url" name="e_image_url" id="e_image_url">
+        </div>
 
         <button type="submit" name='create_event'>CREATE</button>
     </div>
