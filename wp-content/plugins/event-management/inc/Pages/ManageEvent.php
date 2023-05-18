@@ -29,6 +29,7 @@ class ManageEvent
             e_location VARCHAR(255) NOT NULL,
             e_desc TEXT NOT NULL,
             e_capacity INT NOT NULL,
+            e_price INT NOT NULL,
             e_tickets_remaining INT NOT NULL,
             e_organizer_id INT NOT NULL
         );");
@@ -51,7 +52,7 @@ class ManageEvent
                 'e_price' => $_POST['e_price'],
                 'e_desc' => $_POST['e_desc'],
                 'e_capacity' => $_POST['e_capacity'],
-                'e_tickets_remaining' => $_POST['e_tickets_remaining'],
+                'e_tickets_remaining' => $_POST['e_capacity'],
                 'e_organizer_id' => $_POST['e_organizer_id'],
             ];
 
@@ -75,6 +76,8 @@ class ManageEvent
         $table = $wpdb->prefix . 'events';
 
         if (isset($_POST['update_event'])) {
+            $curr_data = $wpdb->get_row("SELECT * FROM $table WHERE e_id={$_POST['e_id']}");
+
             $data = [
                 'e_name' => $_POST['e_name'],
                 'e_date' => $_POST['e_date'],
@@ -82,9 +85,18 @@ class ManageEvent
                 'e_location' => $_POST['e_location'],
                 'e_price' => $_POST['e_price'],
                 'e_desc' => $_POST['e_desc'],
-                'e_capacity' => $_POST['e_capacity'],
-                // 'e_tickets_remaining' => $_POST['e_tickets_remaining'],
             ];
+
+            if ($curr_data->e_capacity != $_POST['e_capacity']) {
+                /**
+                 * check remaining tickets and update them if the organizer changed the event capacity
+                 */
+                $more_available_tickets = (int)$_POST['e_capacity'] - (int)$curr_data->e_capacity;
+                $new_tickets_remaining = (int)$curr_data->e_tickets_remaining + $more_available_tickets;
+
+                $data['e_capacity'] = $_POST['e_capacity'];
+                $data['e_tickets_remaining'] = $new_tickets_remaining;
+            }
 
             $where = ['e_id' => $_POST['e_id']];
 
