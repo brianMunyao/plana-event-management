@@ -21,7 +21,7 @@ function redirect_on_logout()
     wp_redirect(site_url('/login'));
     exit();
 }
-add_action('wp_login', 'redirect_on_logout');
+add_action('wp_logout', 'redirect_on_logout');
 
 function add_commas($val)
 {

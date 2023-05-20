@@ -1,3 +1,11 @@
+<?php
+
+if (isset($_POST['logout'])) {
+    wp_logout();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +28,22 @@
             if (function_exists('the_custom_logo')) {
                 the_custom_logo();
             } ?>
+
+            <?php
+
+            if (is_user_logged_in()) {
+            ?>
+                <form action="" method="post">
+                    <button class="custom-btn" name="logout" type="submit">Logout</button>
+                </form>
+            <?php
+            } else {
+            ?>
+                <button class="custom-btn">Login</button>
+            <?php
+            }
+
+            ?>
         </nav>
 
         <div class="inner-body">

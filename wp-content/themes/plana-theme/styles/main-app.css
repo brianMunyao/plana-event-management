@@ -9,11 +9,13 @@ html {
 }
 
 nav {
+	width: 100%;
 	height: 80px;
 	min-height: 80px;
 	padding: 5px 50px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	border-bottom: 0.5px solid rgb(244, 244, 244);
 }
 nav img {
@@ -139,9 +141,9 @@ nav img {
 	gap: 30px;
 	padding: 20px 0;
 }
-.events-list > a {
-	/* max-width: 300px; */
-}
+/* .events-list > a {
+	max-width: 300px;
+} */
 .event-card {
 	height: 100%;
 	width: 100%;
@@ -181,6 +183,9 @@ nav img {
 	font-size: 14px;
 	font-weight: 600;
 	padding: 4px 7px;
+}
+.event-top .event-remaining.sold-out {
+	background: rgb(160, 160, 160);
 }
 .event-card:hover .event-remaining {
 	display: block;

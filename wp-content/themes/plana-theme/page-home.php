@@ -44,9 +44,13 @@ $events = $wpdb->get_results("SELECT * FROM $events_table");
                 <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
                     <div class="event-card">
                         <div class="event-top" style="background: url('<?php echo $event->e_image_url; ?>');background-size: cover;background-position: center;">
-                            <span class="event-remaining">
-                                Tickets: <?php echo $event->e_tickets_remaining; ?>
-                            </span>
+
+                            <?php
+                            echo $event->e_tickets_remaining > 0 ?
+                                "<span class='event-remaining'>Tickets: $event->e_tickets_remaining</span>" :
+                                "<span class='event-remaining sold-out'>Sold Out</span>";
+                            ?>
+
                         </div>
 
                         <div class="event-bottom">
