@@ -8,6 +8,27 @@ html {
 		sans-serif;
 }
 
+.error,
+.success {
+	padding: 6px 10px;
+	border-radius: 6px;
+}
+.error {
+	color: rgb(206, 54, 27);
+	background: rgba(255, 99, 71, 0.267);
+	border: 1.5px solid rgba(228, 126, 108, 0.358);
+}
+.success {
+	color: green;
+	background: rgba(0, 128, 0, 0.107);
+	border: 1.5px solid rgba(0, 128, 0, 0.217);
+}
+
+.error:empty,
+.success:empty {
+	display: none;
+}
+
 nav {
 	width: 100%;
 	height: 80px;
@@ -36,7 +57,6 @@ nav img {
 	position: relative;
 	height: 300px;
 	background: url(https://img.freepik.com/free-photo/rear-view-excited-fans-having-fun-music-festival-taking-pictures-stage-with-their-smart-phones-copy-space_637285-607.jpg?w=1380&t=st=1684573121~exp=1684573721~hmac=9d7630a6c343eff7e1f5497b4431bcda8a9c2913079c904d9f42f2642ee4f480);
-	/* background: url(https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=962&q=80); */
 	background-size: 100% auto;
 	background-position: center;
 	padding: 10px 50px;
@@ -141,9 +161,7 @@ nav img {
 	gap: 30px;
 	padding: 20px 0;
 }
-/* .events-list > a {
-	max-width: 300px;
-} */
+
 .event-card {
 	height: 100%;
 	width: 100%;
@@ -165,11 +183,6 @@ nav img {
 	position: relative;
 	height: 100%;
 	width: 100%;
-
-	/* flex-direction: ; */
-	/* 
-	
-	background-color: rebeccapurple; */
 }
 
 .event-top .event-remaining {
@@ -192,7 +205,6 @@ nav img {
 }
 .event-bottom {
 	padding: 12px 8px;
-	/* height: 200px; */
 	background: #fff;
 }
 .event-bottom .event-loc {
@@ -238,6 +250,129 @@ nav img {
 }
 
 /*
+* 
+* Single Event Page
+*/
+
+.title-con {
+	padding: 30px 50px;
+	border-bottom: 1.5px solid rgba(196, 196, 196, 0.333);
+}
+.host-con {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 15px;
+}
+.host-con ion-icon {
+	opacity: 0.2;
+	font-size: 40px;
+}
+.host-con .host-by {
+	opacity: 0.7;
+	font-size: 15px;
+}
+.host-con .host-name {
+	font-size: 17px;
+	font-weight: 600;
+}
+
+.event-con {
+	padding: 50px;
+	background: #f6f7f8;
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	grid-auto-rows: fit-content;
+	gap: 30px;
+}
+.event-con .event-left img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.event-con .event-left .event-desc .event-desc-h {
+	font-weight: 700;
+	font-size: 24px;
+	margin: 15px 0 10px;
+}
+.event-con .event-left .event-desc .event-desc-s {
+	line-height: 23px;
+	font-size: 17px;
+	color: rgb(89, 89, 89);
+}
+
+.event-con .event-right {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.event-con .event-right .event-book-loggedin,
+.event-con .event-right .event-book-loggedout {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	gap: 10px;
+}
+.event-con .event-right .event-book-loggedout a {
+	height: 100%;
+	flex: 1;
+}
+.event-con .event-right .event-book-loggedin input {
+	width: 50px;
+	height: 100%;
+	font-size: 20px;
+	border: 1.5px solid rgb(236, 236, 236);
+	border-radius: 10px;
+	text-align: center;
+}
+.event-con .event-right .event-book-loggedin input:focus {
+	outline: none;
+}
+.event-con .event-right .custom-btn {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 18px;
+	background: #ffb400;
+	flex: 1;
+}
+.event-con .event-right .custom-btn:hover {
+	background: #eba604;
+}
+
+.event-loc-time {
+	background: #fff;
+	border-radius: 20px;
+}
+.event-loc-time > div {
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+.event-loc-time > div ion-icon {
+	opacity: 0.6;
+	font-size: 20px;
+}
+.event-loc-time > div > div {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 3px;
+}
+.event-loc-time > div > div .lt-h {
+	font-size: 15px;
+	font-weight: 600;
+}
+.event-loc-time > div > div .lt-s {
+	color: rgb(124, 124, 124);
+}
+.event-loc-time hr {
+	opacity: 0.2;
+}
+/*
 *
 * footer
 */
@@ -247,4 +382,23 @@ footer {
 	font-size: 14px;
 	padding: 20px;
 	opacity: 0.5;
+}
+
+@media screen and (max-width: 850px) {
+	.event-con {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	nav {
+		padding: 5px 20px;
+	}
+	.title-con {
+		padding: 30px 20px;
+	}
+	.event-con {
+		padding: 50px 20px;
+	}
 }
