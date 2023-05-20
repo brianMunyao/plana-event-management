@@ -16,6 +16,10 @@
 <body>
     <div class="app-body">
         <nav>
-            <h4><?php echo bloginfo('name'); ?></h4>
+            <?php
+            if (function_exists('the_custom_logo')) {
+                the_custom_logo();
+            } ?>
         </nav>
+
         <div class="inner-body">

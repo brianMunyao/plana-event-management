@@ -18,7 +18,7 @@
 
 
 //security
-!defined(ABSPATH) or die("Blocked");
+defined('ABSPATH') or die("Blocked");
 
 use Inc\Base\Activate;
 use Inc\Base\Deactivate;

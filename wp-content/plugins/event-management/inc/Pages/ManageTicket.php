@@ -40,27 +40,37 @@ class ManageTicket
 
             $event_info = $wpdb->get_row("SELECT e_tickets_remaining, e_price FROM $events_table WHERE e_id={$_POST['e_id']}");
 
+
             if ($event_info->e_tickets_remaining > 0) {
-                // to reduce the number of available tickets
-                $results = $wpdb->update(
-                    $events_table,
-                    ['e_tickets_remaining' => $event_info->e_tickets_remaining - $_POST['t_quantity']],
-                    ['e_id' => $_POST['e_id']]
-                );
+                /**
+                 * Check if the user ordered more tickets than are available
+                 */
 
-                if ($results) {
-                    // add ticket
-                    $is_inserted = $wpdb->insert($tickets_table, [
-                        't_event_id' => $_POST['e_id'],
-                        't_attendee_id' => $_POST['attendee_id'],
-                        't_quantity' => $_POST['t_quantity'],
-                        't_cost' => ((int)$_POST['t_quantity'] *  (int)$event_info->e_price)
-                    ]);
+                if ($_POST['t_quantity'] >  $event_info->e_tickets_remaining) {
+                    $error_msg = "Only $event_info->e_tickets_remaining tickets are available";
+                } else {
+                    // to reduce the number of available tickets
 
-                    if ($is_inserted) {
-                        $success_msg = "Ticket bought";
-                    } else {
-                        $error_msg = "Error buying ticket";
+                    $results = $wpdb->update(
+                        $events_table,
+                        ['e_tickets_remaining' => $event_info->e_tickets_remaining - $_POST['t_quantity']],
+                        ['e_id' => $_POST['e_id']]
+                    );
+
+                    if ($results) {
+                        // add ticket
+                        $is_inserted = $wpdb->insert($tickets_table, [
+                            't_event_id' => $_POST['e_id'],
+                            't_attendee_id' => $_POST['attendee_id'],
+                            't_quantity' => $_POST['t_quantity'],
+                            't_cost' => ((int)$_POST['t_quantity'] *  (int)$event_info->e_price)
+                        ]);
+
+                        if ($is_inserted) {
+                            $success_msg = "Ticket bought";
+                        } else {
+                            $error_msg = "Error buying ticket";
+                        }
                     }
                 }
             } else {

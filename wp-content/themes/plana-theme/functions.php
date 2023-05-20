@@ -22,3 +22,8 @@ function redirect_on_logout()
     exit();
 }
 add_action('wp_login', 'redirect_on_logout');
+
+function add_commas($val)
+{
+    return 'Ksh ' . number_format($val, 0, '.', ',');
+}
