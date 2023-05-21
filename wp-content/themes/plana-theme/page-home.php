@@ -60,7 +60,7 @@ $events = $wpdb->get_results("SELECT * FROM $events_table");
 
                             <div class="bottom-inner">
                                 <span class="event-date"><ion-icon name="calendar-outline"></ion-icon><?php echo $event->e_date; ?></span>
-                                <span class="event-price"><?php echo add_commas($event->e_price); ?></span>
+                                <span class="event-price"><?php echo (int)$event->e_price > 0 ? add_commas($event->e_price) : "FREE"; ?></span>
                             </div>
                         </div>
                     </div>
