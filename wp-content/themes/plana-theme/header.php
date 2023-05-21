@@ -52,17 +52,20 @@ if (isset($_POST['logout'])) {
                 ?>
 
                 <a href="<?php echo site_url('/manage-events'); ?>">Manage Events</a>
-                <a href="<?php echo site_url('/create-event'); ?>">Create Event</a>
                 <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
+                <div class="separator"></div>
+                <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
+
+                <?php if (is_user_logged_in()) { ?>
+                    <form action="" method="post">
+                        <button class="custom-btn" name="logout" type="submit">Logout</button>
+                    </form>
+                <?php } else { ?>
+                    <button class="custom-btn">Login</button>
+                <?php } ?>
             </div>
 
-            <?php if (is_user_logged_in()) { ?>
-                <form action="" method="post">
-                    <button class="custom-btn" name="logout" type="submit">Logout</button>
-                </form>
-            <?php } else { ?>
-                <button class="custom-btn">Login</button>
-            <?php } ?>
+
         </nav>
 
         <div class="inner-body">
