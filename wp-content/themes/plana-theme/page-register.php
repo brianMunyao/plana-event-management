@@ -4,57 +4,26 @@ Template Name: Register Page
 */
 get_header();
 ?>
+
 <?php
-if (isset($_POST['submit'])) : ?>
-  <?php
-  // sanitize user inputs
-  $fullname = $_POST['fullname'];
-  $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
 
-  // validate user inputs
-  $errors = array();
-  if (empty($fullname)) {
-    $errors['fullname'] = 'Please enter your full name';
-  }
+require_once('wp-load.php');
 
-  if (empty($phone)) {
-    $errors['phone'] = 'Please enter a phone number';
-  } elseif (!filter_var($phone)) {
-    $errors['phone'] = 'Please enter a valid phone number';
-  }
+$user_data = array(
+    'user_login'  => 'fullname',
+    'phone' => 'phone',
+    'user_email'  => 'email',
+    'user_pass'   => 'password',
+);
 
-  if (empty($email)) {
-    $errors['email'] = 'Please enter an email address';
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors['email'] = 'Please enter a valid email address';
-  }
+$user_id = wp_insert_user($user_data);
 
-  if (empty($password)) {
-    $errors['password'] = 'Please enter a password';
-  }
-
-  // create new user if there are no errors
-  if (empty($errors)) {
-    $user_id = wp_create_user($fullname, $password, $email);
-    if (is_wp_error($user_id)) {
-      var_dump($user_id);
-      echo '<p class="register-error">An error occurred while creating your account. Please try again later.</p>';
-    } else {
-      wp_update_user(array('ID' => $user_id, 'role' => 'subscriber'));
-      // echo '<p class="register-success">Your account has been created successfully. Please login using your credentials.</p>';
-      echo ("<script>location.href = 'http://localhost/plana-event-management';</script>");
-      // exit(wp_redirect("Location: /plana-event-management/login"));
-    }
-  } else {
-    // display errors
-    foreach ($errors as $error) {
-      echo '<p class="register-error">' . $error . '</p>';
-    }
-  }
-  ?>
-<?php endif ?>
+if (!is_wp_error($user_id)) {
+    echo "User created successfully. User ID: " . $user_id;
+} else {
+    echo "Error creating user: " . $user_id->get_error_message();
+}
+?>
 
 <div class="form-container">
     <div class="regcover"> 
