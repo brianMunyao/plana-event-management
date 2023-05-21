@@ -32,7 +32,6 @@ html {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: 100%;
-  flex-direction: row;
   width: 780px;
   height: fit-content;
   min-height: 430px;
@@ -79,11 +78,16 @@ html {
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .form h2 {
   font-size: 35px;
   font-weight: bolder;
   text-align: center;
+}
+.form label{
+    margin-bottom: 5px;
 }
 .input1 {
   display: flex;
@@ -93,7 +97,7 @@ html {
 }
 .icons1 {
   position: relative;
-  height: 40px;
+  height: 35px;
   width: 100%;
 }
 .icons1 * {
@@ -108,11 +112,12 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 35px;
+  height: 100%;
   padding-left: 30px;
   background: #fff;
   border: 1px solid rgb(184, 182, 182);
   border-radius: 5px;
+  font-size: 16px;
 }
 .btnreg {
   height: 40px;
@@ -124,4 +129,11 @@ html {
   font-weight: bolder;
   margin-top: 20px;
   width: 100%;
+}
+@media screen and (max-width: 600px){
+  .regcover {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    width: 100%;
+  }
 }
