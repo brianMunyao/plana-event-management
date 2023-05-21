@@ -27,3 +27,9 @@ function add_commas($val)
 {
     return 'Ksh ' . number_format($val, 0, '.', ',');
 }
+
+function is_user_in_role($user, $role)
+{
+    // pass the role you want to check and user object from wp_get_current_user()
+    return in_array($role, $user->roles);
+}

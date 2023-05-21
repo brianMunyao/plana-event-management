@@ -1,3 +1,6 @@
+<?php // is_user_in_role(wp_get_current_user(), 'organizer')
+?>
+
 <?php
 
 /**

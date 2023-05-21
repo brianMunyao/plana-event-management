@@ -23,27 +23,46 @@ if (isset($_POST['logout'])) {
 
 <body>
     <div class="app-body">
+        <pre>
+   <?php
+    // echo is_user_in_role(wp_get_current_user(), 'organizer') ? "Organizer" : 'Not Organizer';
+    ?>
+   </pre>
         <nav>
             <?php
             if (function_exists('the_custom_logo')) {
                 the_custom_logo();
             } ?>
 
-            <?php
+            <div class="nav-links">
+                <?php
+                if (is_user_in_role(wp_get_current_user(), 'organizer')) {
+                ?>
+                    <!-- <a href="<?php // echo site_url('/manage-events'); 
+                                    ?>">Manage Events</a>
+                    <a href="<?php // echo site_url('/create-event'); 
+                                ?>">Create An Event</a> -->
+                <?php
+                } else {
+                ?>
+                    <!-- <a href="<?php // echo site_url('/orders'); 
+                                    ?>">Ticket Orders</a> -->
+                <?php
+                }
+                ?>
 
-            if (is_user_logged_in()) {
-            ?>
+                <a href="<?php echo site_url('/manage-events'); ?>">Manage Events</a>
+                <a href="<?php echo site_url('/create-event'); ?>">Create Event</a>
+                <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
+            </div>
+
+            <?php if (is_user_logged_in()) { ?>
                 <form action="" method="post">
                     <button class="custom-btn" name="logout" type="submit">Logout</button>
                 </form>
-            <?php
-            } else {
-            ?>
+            <?php } else { ?>
                 <button class="custom-btn">Login</button>
-            <?php
-            }
-
-            ?>
+            <?php } ?>
         </nav>
 
         <div class="inner-body">
