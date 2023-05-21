@@ -1,9 +1,5 @@
 <?php
-
-if (isset($_POST['logout'])) {
-    wp_logout();
-}
-
+if (isset($_POST['logout'])) wp_logout();
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +47,17 @@ if (isset($_POST['logout'])) {
                 }
                 ?>
 
-                <a href="<?php echo site_url('/manage-events'); ?>">Manage Events</a>
-                <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
-                <div class="separator"></div>
+                <?php
+                if (is_user_logged_in()) {
+                ?>
+                    <a href="<?php echo site_url('/manage-events') ?>">Manage Events</a>
+                    <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
+                    <div class="separator"></div>
+                <?php
+                }
+                ?>
+
+
                 <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
 
                 <?php if (is_user_logged_in()) { ?>

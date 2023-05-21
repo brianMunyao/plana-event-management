@@ -49,18 +49,35 @@ $user_id = get_current_user_id();
             <p class="success"><?php echo $success_msg; ?></p>
             <?php
             if (is_user_logged_in()) {
+                if (is_user_in_role(wp_get_current_user(), 'organizer') && $event->e_organizer_id == get_current_user_id()) {
             ?>
-                <form action="" method="POST">
-                    <input type="hidden" name="e_id" value="<?php echo $event->e_id; ?>">
-                    <input type="hidden" name="attendee_id" value="<?php echo $user_id; ?>">
-                    <div class="event-book-loggedin">
-                        <input type="number" min='1' name="t_quantity" value="<?php echo 1; ?>">
-                        <button class="custom-btn" type="submit" name="buy_ticket">BOOK A TICKET</button>
+                    <div class="event-book-edit">
+                        <a href="<?php echo site_url("/update-event?id={$_GET['id']}") ?>"><button type="button" class="custom-btn"><ion-icon name="create"></ion-icon><span>EDIT EVENT</span></button></a>
                     </div>
-                </form>
-            <?php
+                    <?php
+                } else {
+                    if ($event->e_tickets_remaining > 0) {
+                    ?>
+                        <form action="" method="POST">
+                            <input type="hidden" name="e_id" value="<?php echo $event->e_id; ?>">
+                            <input type="hidden" name="attendee_id" value="<?php echo $user_id; ?>">
+                            <div class="event-book-loggedin">
+                                <input type="number" min='1' name="t_quantity" value="<?php echo 1; ?>">
+                                <button class="custom-btn" type="submit" name="buy_ticket">BOOK A TICKET</button>
+                            </div>
+                        </form>
+                    <?php
+                    } else {
+                    ?>
+                        <button class="custom-btn" type="button" disabled>SOLD OUT</button>
+                    <?php
+                    }
+                    ?>
+
+                <?php
+                }
             } else {
-            ?>
+                ?>
                 <div class="event-book-loggedout">
                     <a href="<?php echo site_url('/login') ?>"><button type="button" class="custom-btn">BOOK A TICKET</button></a>
                 </div>
@@ -74,6 +91,14 @@ $user_id = get_current_user_id();
                     <div>
                         <p class="lt-h">Tickets remaining (Total)</p>
                         <p class="lt-s"><?php echo "$event->e_tickets_remaining ($event->e_capacity)" ?></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="event-lt">
+                    <ion-icon name="card-outline"></ion-icon>
+                    <div>
+                        <p class="lt-h">Price</p>
+                        <p class="lt-s"><?php echo $event->e_price > 0 ? add_commas($event->e_price) : "<i>FREE</i>" ?></p>
                     </div>
                 </div>
                 <hr>

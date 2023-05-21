@@ -33,3 +33,14 @@ function is_user_in_role($user, $role)
     // pass the role you want to check and user object from wp_get_current_user()
     return in_array($role, $user->roles);
 }
+
+function shorten_string($string, $max_length)
+{
+    $short_string = substr($string, 0, $max_length);
+
+    if (strlen($string) > strlen($short_string)) {
+        $short_string .= '...';
+    }
+
+    return $short_string;
+}
