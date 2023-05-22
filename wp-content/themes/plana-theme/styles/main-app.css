@@ -240,6 +240,13 @@ nav a {
 	margin-bottom: 10px;
 }
 
+.section-subtext {
+	text-align: center;
+	font-size: 17px;
+	padding: 4px 0 14px;
+	color: rgb(95, 95, 95);
+}
+
 .events-list {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
