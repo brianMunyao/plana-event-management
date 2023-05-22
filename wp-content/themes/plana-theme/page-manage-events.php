@@ -1,10 +1,11 @@
 <?php
+if (is_user_in_role(wp_get_current_user(), 'attendee')) wp_redirect(home_url());
 
 /**
  * Template Name: Manage Events Page
  */
 
-get_header();;
+get_header();
 
 global $wpdb;
 $events_table = $wpdb->prefix . "events";

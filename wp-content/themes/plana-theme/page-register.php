@@ -1,28 +1,49 @@
 <?php
 /*
+
 Template Name: Register Page
 */
-get_header();
 
-if (isset($_POST['submit'])) {
-    require_once('wp-load.php');
+
+if (is_user_logged_in()) wp_redirect(home_url());
+
+if (isset($_POST['register-submit'])) {
+    // require_once('wp-load.php');
 
     // Create a new user
-    $user_data = array(
-        'user_login'  => $_POST['fullname'],
-        'user_pass' => $_POST['password'],
-        'user_email'  => $_POST['email'],
-    );
+    // $user_data = array(
+    //     'user_login'  => $_POST['fullname'],
+    //     'user_pass' => $_POST['password'],
+    //     'user_email'  => $_POST['email'],
+    // );
 
-    $user_id = wp_insert_user($user_data);
+    $user_id = wp_insert_user([
+        'user_login' => $_POST['email'],
+        'user_pass' => $_POST['password'],
+        'user_email' => $_POST['email'],
+        'role' => $_POST['role']
+    ]);
 
     if (!is_wp_error($user_id)) {
-        echo "User created successfully. User ID: " . $user_id;
+        update_user_meta($user_id, 'fullname', $_POST['fullname']);
+        update_user_meta($user_id, 'phone', $_POST['phone']);
+
+        $user = wp_signon([
+            'user_login' => $_POST['email'],
+            'user_password' => $_POST['password']
+        ]);
+
+        if (!is_wp_error($user)) {
+            $error_msg = 'Register failed: ' . $user->get_error_message();
+        }
     } else {
-        echo "Error creating user: " . $user_id->get_error_message();
+        $error_msg = $user_id->get_error_message();
     }
 }
 ?>
+
+
+<?php get_header(); ?>
 
 <div class="form-container">
     <div class="regcover">
@@ -34,14 +55,16 @@ if (isset($_POST['submit'])) {
             <div class="form">
                 <h2>Register</h2>
 
+                <p class="error"><?php echo $error_msg ?></p>
+
                 <div class="mychoice">
                     <div>
-                        <label>
-                            <input type="radio" name="role" value="organizer">
+                        <label for="organizer-radio">
+                            <input id="organizer-radio" type="radio" name="role" value="organizer" required>
                             <span>organizer</span>
                         </label>
-                        <label>
-                            <input type="radio" name="role" value= "attendee" checked="">
+                        <label for="attendee-radio">
+                            <input id="attendee-radio" type="radio" name="role" value="attendee" checked required>
                             <span>Attendee</span>
                         </label>
 
@@ -59,14 +82,14 @@ if (isset($_POST['submit'])) {
                     <label for="phone">Phone Number</label>
                     <div class="icons1">
                         <ion-icon name="call-outline"></ion-icon>
-                        <input type="text" placeholder="Enter phone number" name="phone">
+                        <input type="tel" placeholder="Enter phone number" name="phone" required>
                     </div>
                 </div>
                 <div class="input1">
                     <label for="email">Email Address</label>
                     <div class="icons1">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" placeholder="Enter email address" name="email" required>
+                        <input type="email" placeholder="Enter email address" name="email" required>
                     </div>
                 </div>
                 <div class="input1">
@@ -76,12 +99,10 @@ if (isset($_POST['submit'])) {
                         <input type="password" placeholder="Enter password" name="password" required>
                     </div>
                 </div>
-                <button class="btnreg" type="submit" name="submit">Register</button>
+                <button class="btnreg" type="submit" name="register-submit">Register</button>
             </div>
         </form>
     </div>
 </div>
 
-<?php
-get_footer();
-?>
+<?php get_footer(); ?>

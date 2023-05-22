@@ -19,57 +19,60 @@ if (isset($_POST['logout'])) wp_logout();
 
 <body>
     <div class="app-body">
-        <pre>
-   <?php
-    // echo is_user_in_role(wp_get_current_user(), 'organizer') ? "Organizer" : 'Not Organizer';
-    ?>
-   </pre>
-        <nav>
-            <?php
-            if (function_exists('the_custom_logo')) {
-                the_custom_logo();
-            } ?>
 
-            <div class="nav-links">
+        <?php
+        $slug = basename(get_permalink());
+        if ($slug == 'register' || $slug == 'login') {
+        ?>
+            <nav class="form-nav">
                 <?php
-                if (is_user_in_role(wp_get_current_user(), 'organizer')) {
-                ?>
-                    <!-- <a href="<?php // echo site_url('/manage-events'); 
-                                    ?>">Manage Events</a>
-                    <a href="<?php // echo site_url('/create-event'); 
-                                ?>">Create An Event</a> -->
+                if (function_exists('the_custom_logo')) {
+                    the_custom_logo();
+                } ?>
+            </nav>
+        <?php
+        } else {
+        ?>
+
+            <nav>
                 <?php
-                } else {
-                ?>
-                    <!-- <a href="<?php // echo site_url('/orders'); 
-                                    ?>">Ticket Orders</a> -->
-                <?php
-                }
-                ?>
+                if (function_exists('the_custom_logo')) {
+                    the_custom_logo();
+                } ?>
 
-                <?php
-                if (is_user_logged_in()) {
-                ?>
-                    <a href="<?php echo site_url('/manage-events') ?>">Manage Events</a>
-                    <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
-                    <div class="separator"></div>
-                <?php
-                }
-                ?>
+                <div class="nav-links">
+                    <?php
+                    if (is_user_logged_in()) {
+                    ?>
+                        <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
 
+                        <?php
+                        if (!is_user_in_role(wp_get_current_user(), 'attendee')) {
+                        ?>
 
-                <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
-
-                <?php if (is_user_logged_in()) { ?>
-                    <form action="" method="post">
-                        <button class="custom-btn" name="logout" type="submit">Logout</button>
-                    </form>
-                <?php } else { ?>
-                    <a href="<?php echo site_url('/login') ?>"><button class="custom-btn">Login</button></a>
-                <?php } ?>
-            </div>
+                            <a href="<?php echo site_url('/manage-events') ?>">Manage Events</a>
+                            <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
+                        <?php
+                        }
+                        ?>
 
 
-        </nav>
+                        <div class="separator"></div>
+
+                        <form action="" method="post">
+                            <button class="custom-btn" name="logout" type="submit">Logout</button>
+                        </form>
+                    <?php
+                    } else {
+                    ?>
+                        <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
+                        <a href="<?php echo site_url('/login') ?>"><button class="custom-btn">Login</button></a>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </nav>
+
+        <?php } ?>
 
         <div class="inner-body">
