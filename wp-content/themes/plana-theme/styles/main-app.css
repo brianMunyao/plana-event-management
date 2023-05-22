@@ -472,6 +472,11 @@ nav img {
 	flex-direction: column;
 	padding: 20px 10px;
 }
+.create-event-form label {
+	font-weight: 500;
+	font-size: 15px;
+	opacity: 0.7;
+}
 
 .create-event-form input:focus,
 .create-event-form textarea:focus {
@@ -505,6 +510,7 @@ nav img {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
+	margin: 5px 0;
 }
 .input-con * {
 	width: 100%;
@@ -660,10 +666,8 @@ nav img {
 * attendees page
 */
 
-.attendees-con {
-}
 .attendees-top {
-	padding: 20px 50px;
+	padding: 20px 50px 10px;
 	display: flex;
 	align-items: center;
 	gap: 20px;
@@ -737,5 +741,8 @@ footer {
 	.events-list-con,
 	.events-table-con {
 		padding: 50px 20px;
+	}
+	.attendees-top {
+		padding: 20px;
 	}
 }

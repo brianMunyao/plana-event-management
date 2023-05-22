@@ -6,6 +6,25 @@
  */
 get_header();
 
+function aggregateQuantityByEmail($array)
+{
+    $result = [];
+
+    foreach ($array as $item) {
+        $user_email = $item->user_email;
+        $t_quantity = $item->t_quantity;
+
+        if (isset($result[$user_email])) {
+            $result[$user_email] += $t_quantity;
+        } else {
+            $result[$user_email] = $t_quantity;
+        }
+    }
+
+    return $result;
+}
+
+
 
 $event_id = $_GET['id'];
 
@@ -30,19 +49,19 @@ $attendees = $wpdb->get_results("SELECT * FROM $tickets_table JOIN $users_table 
 
     <table>
         <tr>
-            <th>No.</th>
+            <th style="width:100px;">No.</th>
             <th>Attendee Email</th>
-            <th>Tickets Bought</th>
+            <th style="width:150px;">Tickets Bought</th>
         </tr>
 
         <?php
         $i = 0;
-        foreach ($attendees as $attendee) {
+        foreach (aggregateQuantityByEmail($attendees) as $user_email => $t_quantity) {
         ?>
             <tr>
                 <td><?php echo ++$i; ?></td>
-                <td><?php echo $attendee->user_email; ?></td>
-                <td><?php echo $attendee->t_quantity; ?></td>
+                <td><?php echo $user_email; ?></td>
+                <td><?php echo $t_quantity; ?></td>
             </tr>
         <?php
         }
