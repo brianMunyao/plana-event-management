@@ -53,7 +53,12 @@ if (isset($_POST['login-submit'])) {
                     </div>
                 </div>
                 <button type="submit" class="btnreg" name="login-submit">Login</button>
+
+                <p class="form-alt">
+                    Don't have an account? <a href="<?php echo site_url('/register') ?>">Register</a>
+                </p>
             </div>
+
         </form>
     </div>
 </div>
