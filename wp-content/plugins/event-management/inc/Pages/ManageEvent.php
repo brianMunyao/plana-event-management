@@ -31,7 +31,8 @@ class ManageEvent
             e_capacity INT NOT NULL,
             e_price INT NOT NULL,
             e_tickets_remaining INT NOT NULL,
-            e_organizer_id INT NOT NULL
+            e_organizer_id INT NOT NULL,
+            e_image_url text
         );");
     }
 
@@ -54,6 +55,7 @@ class ManageEvent
                 'e_capacity' => $_POST['e_capacity'],
                 'e_tickets_remaining' => $_POST['e_capacity'],
                 'e_organizer_id' => $_POST['e_organizer_id'],
+                'e_image_url' => $_POST['e_image_url'],
             ];
 
             $results = $wpdb->insert($table, $data);
@@ -85,6 +87,7 @@ class ManageEvent
                 'e_location' => $_POST['e_location'],
                 'e_price' => $_POST['e_price'],
                 'e_desc' => $_POST['e_desc'],
+                'e_image_url' => $_POST['e_image_url'],
             ];
 
             if ($curr_data->e_capacity != $_POST['e_capacity']) {

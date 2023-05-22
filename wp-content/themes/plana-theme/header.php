@@ -1,3 +1,7 @@
+<?php
+if (isset($_POST['logout'])) wp_logout();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +19,57 @@
 
 <body>
     <div class="app-body">
+        <pre>
+   <?php
+    // echo is_user_in_role(wp_get_current_user(), 'organizer') ? "Organizer" : 'Not Organizer';
+    ?>
+   </pre>
         <nav>
-            <h4><?php echo bloginfo('name'); ?></h4>
+            <?php
+            if (function_exists('the_custom_logo')) {
+                the_custom_logo();
+            } ?>
+
+            <div class="nav-links">
+                <?php
+                if (is_user_in_role(wp_get_current_user(), 'organizer')) {
+                ?>
+                    <!-- <a href="<?php // echo site_url('/manage-events'); 
+                                    ?>">Manage Events</a>
+                    <a href="<?php // echo site_url('/create-event'); 
+                                ?>">Create An Event</a> -->
+                <?php
+                } else {
+                ?>
+                    <!-- <a href="<?php // echo site_url('/orders'); 
+                                    ?>">Ticket Orders</a> -->
+                <?php
+                }
+                ?>
+
+                <?php
+                if (is_user_logged_in()) {
+                ?>
+                    <a href="<?php echo site_url('/manage-events') ?>">Manage Events</a>
+                    <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
+                    <div class="separator"></div>
+                <?php
+                }
+                ?>
+
+
+                <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
+
+                <?php if (is_user_logged_in()) { ?>
+                    <form action="" method="post">
+                        <button class="custom-btn" name="logout" type="submit">Logout</button>
+                    </form>
+                <?php } else { ?>
+                    <a href="<?php echo site_url('/login') ?>"><button class="custom-btn">Login</button></a>
+                <?php } ?>
+            </div>
+
+
         </nav>
+
         <div class="inner-body">

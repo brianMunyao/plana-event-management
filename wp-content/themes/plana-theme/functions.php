@@ -21,4 +21,36 @@ function redirect_on_logout()
     wp_redirect(site_url('/login'));
     exit();
 }
-add_action('wp_login', 'redirect_on_logout');
+add_action('wp_logout', 'redirect_on_logout');
+
+function add_commas($val)
+{
+    return 'Ksh ' . number_format($val, 0, '.', ',');
+}
+
+function is_user_in_role($user, $role)
+{
+    // pass the role you want to check and user object from wp_get_current_user()
+    return in_array($role, $user->roles);
+}
+
+function shorten_string($string, $max_length)
+{
+    $short_string = substr($string, 0, $max_length);
+
+    if (strlen($string) > strlen($short_string)) {
+        $short_string .= '...';
+    }
+
+    return $short_string;
+}
+
+function style_date($raw_date)
+{
+    return date('M j Y', strtotime($raw_date));
+}
+
+function style_time($raw_time)
+{
+    return date('g:i', strtotime($raw_time));
+}
