@@ -4,6 +4,37 @@ Template Name: Login Page
 */
 get_header();
 ?>
+
+<?php
+if (isset($_POST['submit'])) {
+    require_once('wp-load.php');
+
+    // Sanitize and validate user input
+    $username = sanitize_text_field($_POST['fullname']);
+    $email = sanitize_text_field($_POST['email']);
+    $password = sanitize_text_field($_POST['password']);
+
+    // Perform login
+    $login_data = array(
+        'user_login' => $fullname,
+        'user_email'  => $email,
+        'user_password' => $password,
+        'remember' => true,
+    );
+
+    $user_verify = wp_signon($login_data, false);
+
+    if (!is_wp_error($user_verify)) {
+        // Redirect to the home page or any desired page after successful login
+        wp_redirect(home_url());
+        exit;
+    } else {
+        $error_message = $user_verify->get_error_message();
+        echo "Login failed: " . $error_message;
+    }
+}
+?>
+
 <div class="form-container">
     <div class="regcover">
         <div class="event">
