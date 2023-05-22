@@ -65,7 +65,7 @@ if (isset($_POST['logout'])) wp_logout();
                     <?php
                     } else {
                     ?>
-                        <a href="<?php echo site_url('/register') ?>"><button class="custom-btn-alt">Register</button></a>
+                        <a href="<?php echo site_url('/register') ?>"><button class="custom-btn">Register</button></a>
                     <?php
                     }
                     ?>
@@ -95,7 +95,7 @@ if (isset($_POST['logout'])) wp_logout();
                         <?php
                         } else {
                         ?>
-                            <a href="<?php echo site_url('/register') ?>"><button class="custom-btn-alt">Register</button></a>
+                            <a href="<?php echo site_url('/register') ?>"><button class="custom-btn">Register</button></a>
                         <?php
                         }
                         ?>
