@@ -6,36 +6,31 @@ get_header();
 ?>
 
 <?php
-// Check if user is already logged in
-if (is_user_logged_in()) {
-    wp_redirect('/plana-event-management/home'); // Redirect to dashboard if already logged in
-    exit;
-}
-
-// Check if form was submitted
 if (isset($_POST['submit'])) {
-    // Verify user credentials
-    $user_email = $_POST['email'];
-    $user_password = $_POST['password'];
-    $creds = array(
-        'user_login' => $user_email,
-        'user_password' => $user_password,
-        'remember' => true
+    require_once('wp-load.php');
+
+    // Sanitize and validate user input
+    $username = sanitize_text_field($_POST['username']);
+    $password = sanitize_text_field($_POST['password']);
+
+    // Perform login
+    $login_data = array(
+        'user_login' => $username,
+        'user_password' => $password,
+        'remember' => true,
     );
-    $user = wp_signon($creds, false);
 
-    
-    if (!is_wp_error($user)) {
-        // Display error message if authentication failed
-        wp_set_current_user($user->ID);
-        wp_set_auth_cookie($user->ID);
-        do_action('wp_login', $user->user_login, $user);
+    $user_verify = wp_signon($login_data, false);
 
-        wp_redirect('/plana-event-management/home');
+    if (!is_wp_error($user_verify)) {
+        // Redirect to the home page or any desired page after successful login
+        wp_redirect(home_url());
         exit;
-      }
-      echo "server error";
+    } else {
+        $error_message = $user_verify->get_error_message();
+        echo "Login failed: " . $error_message;
     }
+}
 ?>
 
 <div class="form-container">
