@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     // Create a new user
     $user_data = array(
         'user_login'  => $_POST['fullname'],
-        'user_pass' => $_POST['password'],
+        'user_password' => $_POST['password'],
         'user_email'  => $_POST['email'],
     );
 
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div class="form-container">
-    <div class="regcover"> 
+    <div class="regcover">
         <div class="event">
             <h1>Plana</h1>
             <p>Plan, organize, and elevate your events with ease using our comprehensive event management system.</p>
@@ -33,6 +33,23 @@ if (isset($_POST['submit'])) {
         <form method="POST" action="">
             <div class="form">
                 <h2>Register</h2>
+
+
+                <div class="mychoice">
+                    <div>
+                        <label>
+                            <input type="radio" name="radio" checked="">
+                            <span>organizer</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="radio">
+                            <span>Attendee</span>
+                        </label>
+
+                    </div>
+                </div>
+
+
                 <div class="input1">
                     <label for="fullname">Full Name</label>
                     <div class="icons1">

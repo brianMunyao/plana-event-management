@@ -5,38 +5,7 @@ Template Name: Login Page
 get_header();
 ?>
 
-<?php
-// Check if user is already logged in
-if (is_user_logged_in()) {
-    wp_redirect('/plana-event-management/home'); // Redirect to dashboard if already logged in
-    exit;
-}
 
-// Check if form was submitted
-if (isset($_POST['submit'])) {
-    // Verify user credentials
-    $user_email = $_POST['email'];
-    $user_password = $_POST['password'];
-    $creds = array(
-        'user_login' => $user_email,
-        'user_password' => $user_password,
-        'remember' => true
-    );
-    $user = wp_signon($creds, false);
-
-    
-    if (!is_wp_error($user)) {
-        // Display error message if authentication failed
-        wp_set_current_user($user->ID);
-        wp_set_auth_cookie($user->ID);
-        do_action('wp_login', $user->user_login, $user);
-
-        wp_redirect('/plana-event-management/home');
-        exit;
-      }
-      echo "server error";
-    }
-?>
 
 <div class="form-container">
     <div class="regcover">
