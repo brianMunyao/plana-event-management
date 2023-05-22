@@ -70,6 +70,39 @@ if (isset($_POST['logout'])) wp_logout();
                     }
                     ?>
                 </div>
+                <span class="burger"><ion-icon name="menu"></ion-icon>
+                    <div class="mob-nav-link">
+                        <?php
+                        if (is_user_logged_in()) {
+                        ?>
+                            <a href="<?php echo site_url('/orders'); ?>">Ticket Orders</a>
+
+                            <?php
+                            if (!is_user_in_role(wp_get_current_user(), 'attendee')) {
+                            ?>
+
+                                <a href="<?php echo site_url('/manage-events') ?>">Manage Events</a>
+                                <a href="<?php echo site_url('/create-event'); ?>">Create Event</a>
+                            <?php
+                            }
+                            ?>
+
+
+
+                            <form action="" method="post">
+                                <button class="custom-btn" name="logout" type="submit">Logout</button>
+                            </form>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="<?php echo site_url('/register') ?>"><button class="custom-btn-alt">Register</button></a>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </span>
+
+
             </nav>
 
         <?php } ?>

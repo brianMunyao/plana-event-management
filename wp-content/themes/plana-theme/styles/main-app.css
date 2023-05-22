@@ -113,6 +113,7 @@ nav a {
 	align-items: center;
 	/* gap: 14px; */
 }
+.mob-nav-link a,
 .nav-links a {
 	display: flex;
 	align-items: center;
@@ -122,6 +123,7 @@ nav a {
 	font-size: 14.5px;
 	transition: all 0.2s linear;
 }
+.mob-nav-link a:hover,
 .nav-links a:hover {
 	color: #593ede;
 }
@@ -138,6 +140,53 @@ nav a {
 .nav-links a ion-icon {
 	font-size: 16px;
 }
+.mob-nav-link {
+	z-index: 2;
+	display: none;
+	align-items: center;
+	gap: 15px;
+	background: #fff;
+	border: 1px solid rgb(236, 236, 236);
+	border-radius: 10px;
+	padding: 10px;
+	width: 150px;
+	flex-direction: column;
+	position: absolute;
+	bottom: 0;
+	transform: translate(-30px, 100%);
+}
+.mob-nav-link > a {
+	color: inherit;
+}
+
+.burger {
+	position: relative;
+	background: rgb(234, 234, 234);
+	border: 1.5px solid rgb(219, 219, 219);
+	width: 30px;
+	height: 30px;
+	border-radius: 8px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	cursor: pointer;
+}
+.burger:hover .mob-nav-link {
+	display: flex;
+}
+
+@media screen and (max-width: 640px) {
+	.burger {
+		display: flex;
+	}
+	.nav-links {
+		display: none;
+	}
+	.mob-nav-link {
+	}
+}
+
 .app-body {
 	height: 100vh;
 	display: flex;
@@ -258,6 +307,7 @@ nav a {
 .event-card {
 	height: 100%;
 	width: 100%;
+	margin: auto;
 	max-width: 450px;
 	display: grid;
 	grid-template-columns: 1fr;
