@@ -10,12 +10,14 @@ if (isset($_POST['submit'])) {
     require_once('wp-load.php');
 
     // Sanitize and validate user input
-    $username = sanitize_text_field($_POST['username']);
+    $username = sanitize_text_field($_POST['fullname']);
+    $email = sanitize_text_field($_POST['email']);
     $password = sanitize_text_field($_POST['password']);
 
     // Perform login
     $login_data = array(
-        'user_login' => $username,
+        'user_login' => $fullname,
+        'user_email'  => $email,
         'user_password' => $password,
         'remember' => true,
     );
