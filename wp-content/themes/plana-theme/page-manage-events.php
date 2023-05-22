@@ -31,10 +31,12 @@ $my_events = $wpdb->get_results("SELECT * FROM $events_table WHERE e_organizer_i
                         <div class="event-img" style="background:url('<?php echo $event->e_image_url ?>'); background-position: center; background-size:cover"></div>
                     </td>
                     <td class="event-details">
-                        <div class="event-name-date-time">
-                            <p class="event-name"><?php echo shorten_string($event->e_name, 40) ?></p>
-                            <p class="event-date-time"><?php echo $event->e_date . ", " . $event->e_time ?></p>
-                        </div>
+                        <a href="<?php echo site_url('/attendees?id=' . $event->e_id) ?>">
+                            <div class="event-name-date-time">
+                                <p class="event-name"><?php echo shorten_string($event->e_name, 40) ?></p>
+                                <p class="event-date-time"><?php echo $event->e_date . ", " . $event->e_time ?></p>
+                            </div>
+                        </a>
                     </td>
                     <td class="event-tbl-tickets"><span class="ed-d"><?php echo ((int)$event->e_capacity - (int)$event->e_tickets_remaining) . " / " . $event->e_capacity ?></span></td>
                     <td class="event-actions">
