@@ -65,8 +65,7 @@ if (isset($_POST['logout'])) wp_logout();
                     <?php
                     } else {
                     ?>
-                        <a href="<?php echo site_url('/create-event'); ?>"><ion-icon name="add"></ion-icon> Create Event</a>
-                        <a href="<?php echo site_url('/login') ?>"><button class="custom-btn">Login</button></a>
+                        <a href="<?php echo site_url('/register') ?>"><button class="custom-btn-alt">Register</button></a>
                     <?php
                     }
                     ?>

@@ -8,15 +8,6 @@ Template Name: Register Page
 if (is_user_logged_in()) wp_redirect(home_url());
 
 if (isset($_POST['register-submit'])) {
-    // require_once('wp-load.php');
-
-    // Create a new user
-    // $user_data = array(
-    //     'user_login'  => $_POST['fullname'],
-    //     'user_pass' => $_POST['password'],
-    //     'user_email'  => $_POST['email'],
-    // );
-
     $user_id = wp_insert_user([
         'user_login' => $_POST['email'],
         'user_pass' => $_POST['password'],
@@ -100,6 +91,10 @@ if (isset($_POST['register-submit'])) {
                     </div>
                 </div>
                 <button class="btnreg" type="submit" name="register-submit">Register</button>
+
+                <p class="form-alt">
+                    Already have an account? <a href="<?php echo site_url('/login') ?>">Login</a>
+                </p>
             </div>
         </form>
     </div>
