@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     // Create a new user
     $user_data = array(
         'user_login'  => $_POST['fullname'],
-        'user_password' => $_POST['password'],
+        'user_pass' => $_POST['password'],
         'user_email'  => $_POST['email'],
     );
 
