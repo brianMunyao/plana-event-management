@@ -34,21 +34,19 @@ if (isset($_POST['submit'])) {
             <div class="form">
                 <h2>Register</h2>
 
-
                 <div class="mychoice">
                     <div>
                         <label>
-                            <input type="radio" name="radio" checked="">
+                            <input type="radio" name="role" value="organizer">
                             <span>organizer</span>
                         </label>
                         <label>
-                            <input type="radio" name="radio">
+                            <input type="radio" name="role" value= "attendee" checked="">
                             <span>Attendee</span>
                         </label>
 
                     </div>
                 </div>
-
 
                 <div class="input1">
                     <label for="fullname">Full Name</label>
