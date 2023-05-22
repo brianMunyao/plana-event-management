@@ -55,13 +55,21 @@ $attendees = $wpdb->get_results("SELECT * FROM $tickets_table JOIN $users_table 
         </tr>
 
         <?php
-        $i = 0;
-        foreach (aggregateQuantityByEmail($attendees) as $user_email => $t_quantity) {
+        if (count($attendees) > 0) {
+            $i = 0;
+            foreach (aggregateQuantityByEmail($attendees) as $user_email => $t_quantity) {
         ?>
+                <tr>
+                    <td><?php echo ++$i; ?></td>
+                    <td><?php echo $user_email; ?></td>
+                    <td><?php echo $t_quantity; ?></td>
+                </tr>
+            <?php
+            }
+        } else {
+            ?>
             <tr>
-                <td><?php echo ++$i; ?></td>
-                <td><?php echo $user_email; ?></td>
-                <td><?php echo $t_quantity; ?></td>
+                <td colspan="5" class="empty-row">No ticket purchases made</td>
             </tr>
         <?php
         }
