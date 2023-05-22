@@ -18,10 +18,6 @@ get_header();
 global $success_msg;
 global $error_msg;
 
-echo $success_msg;
-echo $error_msg;
-
-
 $curr_user_id = get_current_user_id();
 ?>
 
@@ -31,6 +27,9 @@ $curr_user_id = get_current_user_id();
 
     <div class="create-event-form">
         <h1>New Event</h1>
+
+        <p class="error"><?php echo $error_msg ?></p>
+        <p class="success"><?php echo $success_msg ?></p>
 
         <div class="inner-form">
             <div class="input-con">

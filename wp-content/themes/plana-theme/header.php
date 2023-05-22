@@ -65,7 +65,7 @@ if (isset($_POST['logout'])) wp_logout();
                         <button class="custom-btn" name="logout" type="submit">Logout</button>
                     </form>
                 <?php } else { ?>
-                    <button class="custom-btn">Login</button>
+                    <a href="<?php echo site_url('/login') ?>"><button class="custom-btn">Login</button></a>
                 <?php } ?>
             </div>
 

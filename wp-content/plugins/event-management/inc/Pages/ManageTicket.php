@@ -24,7 +24,8 @@ class ManageTicket
             t_event_id INT NOT NULL,
             t_attendee_id INT NOT NULL,
             t_quantity INT NOT NULL DEFAULT 1,
-            t_cost INT NOT NULL
+            t_cost INT NOT NULL,
+            t_date_bought TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );");
     }
 

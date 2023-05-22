@@ -44,3 +44,13 @@ function shorten_string($string, $max_length)
 
     return $short_string;
 }
+
+function style_date($raw_date)
+{
+    return date('M j Y', strtotime($raw_date));
+}
+
+function style_time($raw_time)
+{
+    return date('g:i', strtotime($raw_time));
+}
