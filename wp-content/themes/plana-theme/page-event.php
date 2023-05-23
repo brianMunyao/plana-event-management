@@ -18,6 +18,20 @@ $users_table = $wpdb->prefix . 'users';
 $event = $wpdb->get_row("SELECT * FROM $events_table JOIN $users_table ON e_organizer_id=ID  WHERE e_id={$_GET['id']}");
 
 $user_id = get_current_user_id();
+
+$event_name_arr = explode(" ", str_replace(',', '', $event->e_location), 4);
+
+$related = [];
+
+foreach ($event_name_arr as $q) {
+    $res = $wpdb->get_results("SELECT * FROM $events_table WHERE e_location LIKE '%$q%'");
+
+    foreach ($res as $r) {
+        if (!in_array($r, $related) && $r->e_id != $event->e_id) {
+            array_push($related, $r);
+        }
+    }
+}
 ?>
 
 
@@ -124,6 +138,44 @@ $user_id = get_current_user_id();
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="events-list-con">
+        <h2>You may also like</h2>
+
+        <div class="events-list">
+            <?php
+            foreach ($related as $event) {
+            ?>
+                <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
+                    <div class="event-card">
+                        <div class="event-top" style="background: url('<?php echo $event->e_image_url; ?>');background-size: cover;background-position: center;">
+
+                            <?php
+                            echo $event->e_tickets_remaining > 0 ?
+                                "<span class='event-remaining'>Tickets: $event->e_tickets_remaining</span>" :
+                                "<span class='event-remaining sold-out'>Sold Out</span>";
+                            ?>
+
+                        </div>
+
+                        <div class="event-bottom">
+                            <p class="event-loc"><ion-icon name="location-outline"></ion-icon><?php echo $event->e_location; ?></p>
+                            <p class="event-name"><?php echo $event->e_name; ?></p>
+
+
+                            <div class="bottom-inner">
+                                <span class="event-date"><ion-icon name="calendar-outline"></ion-icon><?php echo style_date($event->e_date) . " at " . style_time($event->e_time); ?></span>
+                                <span class="event-price"><?php echo (int)$event->e_price > 0 ? add_commas($event->e_price) : "FREE"; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
