@@ -34,7 +34,7 @@ $events_table = $wpdb->prefix . 'events';
         <p class="section-subtext">Don't miss out on the hottest upcoming events!</p>
         <div class="events-list">
             <?php
-            $upcoming_events = $wpdb->get_results("SELECT * FROM $events_table ORDER BY e_date DESC");
+            $upcoming_events = $wpdb->get_results("SELECT * FROM $events_table WHERE e_date >= CURDATE()  ORDER BY e_date ASC");
             foreach (array_slice($upcoming_events, 0, 6) as $event) {
             ?>
                 <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
