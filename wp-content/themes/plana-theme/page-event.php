@@ -20,17 +20,23 @@ $event = $wpdb->get_row("SELECT * FROM $events_table JOIN $users_table ON e_orga
 $user_id = get_current_user_id();
 ?>
 
+
 <div class="single-event-con">
     <div class="title-con">
         <h1><?php echo $event->e_name ?></h1>
         <div class="host-con">
             <ion-icon name="person-circle"></ion-icon>
+            <?php
+            $fullname = get_fullname_meta($event->e_organizer_id)
+            ?>
             <div>
                 <p class="host-by">Hosted By</p>
-                <p class="host-name"><?php echo $event->user_email ?></p>
+                <p class="host-name"><?php echo $fullname != '' ? $fullname : $event->user_email ?></p>
             </div>
         </div>
     </div>
+
+
 
     <div class="event-con">
         <div class="event-left">
