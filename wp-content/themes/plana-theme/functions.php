@@ -54,3 +54,8 @@ function style_time($raw_time)
 {
     return date('g:i', strtotime($raw_time));
 }
+
+function get_fullname_meta($user_id)
+{
+    return get_user_meta($user_id, 'fullname', true);
+}

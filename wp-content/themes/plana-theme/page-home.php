@@ -69,7 +69,7 @@ $events_table = $wpdb->prefix . 'events';
 
     <!-- Limited Tickets -->
     <?php
-    $limited_events = $wpdb->get_results("SELECT * FROM $events_table e_tickets_remaining < 10");
+    $limited_events = $wpdb->get_results("SELECT * FROM $events_table WHERE e_tickets_remaining <= 10");
 
     if (count($limited_events) > 0) {
     ?>
