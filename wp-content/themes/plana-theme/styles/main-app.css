@@ -170,6 +170,7 @@ nav a {
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	z-index: 1;
 }
 .logged-user ion-icon {
 	margin-right: 5px;
@@ -183,6 +184,8 @@ nav a {
 	left: 50%;
 	transform: translate(-50%, 100%);
 	border-radius: 5px;
+	border: 1px solid rgba(128, 128, 128, 0.1);
+	box-shadow: 1px 1px 10px rgb(244, 244, 244);
 }
 .logged-user:hover div {
 	display: block;
