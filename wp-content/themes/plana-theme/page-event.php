@@ -126,7 +126,7 @@ foreach ($event_name_arr as $q) {
                     <ion-icon name="time-outline"></ion-icon>
                     <div>
                         <p class="lt-h">Date and Time</p>
-                        <p class="lt-s"><?php echo $event->e_date ?>, <?php echo $event->e_time ?></p>
+                        <p class="lt-s"><?php echo style_date($event->e_date) ?>, <?php echo style_time($event->e_time) ?></p>
                     </div>
                 </div>
                 <hr>
