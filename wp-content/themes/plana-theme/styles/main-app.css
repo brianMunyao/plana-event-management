@@ -91,6 +91,7 @@ html {
 */
 
 nav {
+	z-index: 1;
 	width: 100%;
 	height: 80px;
 	min-height: 80px;
@@ -158,6 +159,35 @@ nav a {
 .mob-nav-link > a {
 	color: inherit;
 }
+.logged-user {
+	position: relative;
+	margin: 0 6px;
+	color: #593ede;
+	font-size: 14.5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+.logged-user ion-icon {
+	margin-right: 5px;
+}
+.logged-user div {
+	display: none;
+	background: #fff;
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	border-radius: 5px;
+}
+.logged-user:hover div {
+	display: block;
+}
+.logged-user div button {
+	margin-left: 0;
+	margin-top: 10px;
+}
 
 .burger {
 	position: relative;
@@ -183,6 +213,13 @@ nav a {
 	.nav-links {
 		display: none;
 	}
+}
+
+.slider {
+	width: 100%;
+}
+.slider > div {
+	width: 100%;
 }
 
 .app-body {

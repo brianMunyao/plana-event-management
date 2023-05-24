@@ -151,7 +151,7 @@ foreach ($event_name_arr as $q) {
 
             <div class="events-list">
                 <?php
-                foreach (array_slice($related, 0, 10) as $event) {
+                foreach (array_slice($related, 0, 6) as $event) {
                 ?>
                     <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
                         <div class="event-card">
