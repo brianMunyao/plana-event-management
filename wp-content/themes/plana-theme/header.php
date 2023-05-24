@@ -60,7 +60,18 @@ if (isset($_POST['logout'])) wp_logout();
                         <div class="separator"></div>
 
                         <form action="" method="post">
-                            <button class="custom-btn" name="logout" type="submit">Logout</button>
+                            <span class="logged-user">
+                                <ion-icon name='person-outline'></ion-icon>
+                                <?php
+
+                                $name = get_fullname_meta(get_current_user_id());
+                                echo $name != '' ? $name : get_userdata(get_current_user_id())->user_login;
+                                ?>
+
+                                <div>
+                                    <button class="custom-btn" name="logout" type="submit">Logout</button>
+                                </div>
+                            </span>
                         </form>
                     <?php
                     } else {
@@ -87,7 +98,16 @@ if (isset($_POST['logout'])) wp_logout();
                             }
                             ?>
 
+                            <span class="logged-user">
+                                <ion-icon name='person-outline'></ion-icon>
+                                <a href="">
+                                    <?php
 
+                                    $name = get_fullname_meta(get_current_user_id());
+                                    echo $name != '' ? $name : get_userdata(get_current_user_id())->user_login;
+                                    ?>
+                                </a>
+                            </span>
 
                             <form action="" method="post">
                                 <button class="custom-btn" name="logout" type="submit">Logout</button>

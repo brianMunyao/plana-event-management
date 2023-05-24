@@ -142,42 +142,51 @@ foreach ($event_name_arr as $q) {
     </div>
 
 
-    <div class="events-list-con">
-        <h2>You may also like</h2>
+    <?php
+    if (count($related) > 0) {
 
-        <div class="events-list">
-            <?php
-            foreach ($related as $event) {
-            ?>
-                <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
-                    <div class="event-card">
-                        <div class="event-top" style="background: url('<?php echo $event->e_image_url; ?>');background-size: cover;background-position: center;">
+    ?>
+        <div class="events-list-con">
+            <h2>You may also like</h2>
 
-                            <?php
-                            echo $event->e_tickets_remaining > 0 ?
-                                "<span class='event-remaining'>Tickets: $event->e_tickets_remaining</span>" :
-                                "<span class='event-remaining sold-out'>Sold Out</span>";
-                            ?>
+            <div class="events-list">
+                <?php
+                foreach (array_slice($related, 0, 6) as $event) {
+                ?>
+                    <a href='<?php echo site_url("/event?id={$event->e_id}"); ?>'>
+                        <div class="event-card">
+                            <div class="event-top" style="background: url('<?php echo $event->e_image_url; ?>');background-size: cover;background-position: center;">
 
-                        </div>
+                                <?php
+                                echo $event->e_tickets_remaining > 0 ?
+                                    "<span class='event-remaining'>Tickets: $event->e_tickets_remaining</span>" :
+                                    "<span class='event-remaining sold-out'>Sold Out</span>";
+                                ?>
 
-                        <div class="event-bottom">
-                            <p class="event-loc"><ion-icon name="location-outline"></ion-icon><?php echo $event->e_location; ?></p>
-                            <p class="event-name"><?php echo $event->e_name; ?></p>
+                            </div>
+
+                            <div class="event-bottom">
+                                <p class="event-loc"><ion-icon name="location-outline"></ion-icon><?php echo $event->e_location; ?></p>
+                                <p class="event-name"><?php echo $event->e_name; ?></p>
 
 
-                            <div class="bottom-inner">
-                                <span class="event-date"><ion-icon name="calendar-outline"></ion-icon><?php echo style_date($event->e_date) . " at " . style_time($event->e_time); ?></span>
-                                <span class="event-price"><?php echo (int)$event->e_price > 0 ? add_commas($event->e_price) : "FREE"; ?></span>
+                                <div class="bottom-inner">
+                                    <span class="event-date"><ion-icon name="calendar-outline"></ion-icon><?php echo style_date($event->e_date) . " at " . style_time($event->e_time); ?></span>
+                                    <span class="event-price"><?php echo (int)$event->e_price > 0 ? add_commas($event->e_price) : "FREE"; ?></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            <?php
-            }
-            ?>
+                    </a>
+                <?php
+                }
+                ?>
+            </div>
         </div>
-    </div>
+
+    <?php
+    }
+
+    ?>
 </div>
 
 <?php get_footer(); ?>
