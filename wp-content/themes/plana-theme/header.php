@@ -12,31 +12,12 @@ if (isset($_POST['logout'])) wp_logout();
     <title><?php echo bloginfo('name'); ?></title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"> -->
     <?php wp_head(); ?>
 </head>
 
 
 
 <body>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-
-    <script type="module">
-        alert("some");
-        import {
-            tns
-        } from './src/tiny-slider.js';
-
-        var slider = tns({
-            container: '.slider',
-            items: 1,
-            slideBy: 'page',
-            autoplay: true,
-            controls: false,
-            nav: false
-        });
-    </script> -->
-
     <div class="app-body">
 
         <?php
